@@ -38,6 +38,8 @@ const findUserByName = (name) => {
   return users["users_list"].filter((user) => user["name"] === name);
 };
 
+app.use(express.json());
+
 app.get("/users", (req, res) => {
   const name = req.query.name;
   if (name != undefined) {
@@ -49,14 +51,8 @@ app.get("/users", (req, res) => {
   }
 });
 
-app.use(express.json());
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
-});
-
-app.get("/users", (req, res) => {
-  res.send(users);
 });
 
 app.listen(port, () => {
