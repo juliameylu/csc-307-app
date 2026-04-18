@@ -49,8 +49,9 @@ const findUserById = (id) =>
   users["users_list"].find((user) => user["id"] === id);
 
 const addUser = (user) => {
-  users["users_list"].push(user);
-  return user;
+  const userWithId = {...user, id: generateId()};
+  users["users_list"].push(userWithId);
+  return userWithId;
 };
 
 const deleteUserById = (id) => {
@@ -59,6 +60,10 @@ const deleteUserById = (id) => {
     return undefined;
   }
   return users["users_list"].splice(index, 1)[0];
+};
+
+const generateId = () => {
+  return Math.random().toString(36).substring(2, 9);
 };
 
 app.use(cors());
