@@ -8,10 +8,23 @@ function MyApp() {
   const [characters, setCharacters] = useState([]);
 
   function removeOneCharacter(index) {
-    const updated = characters.filter((character, i) => {
-      return i !== index;
+    const person = characters[index];
+    const promise = fetch("http://localhost:8000/users/" + person.id, {
+      method: "DELETE",
     });
-    setCharacters(updated);
+
+    promise
+      .then((res) => {
+        if (res.status === 204) {
+          const updated = characters.filter((character, i) => {
+            return i !== index;
+          });
+          setCharacters(updated);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function updateList(person) {
