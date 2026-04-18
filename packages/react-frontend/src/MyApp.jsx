@@ -44,7 +44,6 @@ function MyApp() {
       });
   }
 
-  // src/MyApp.js (a new inner function inside MyApp())
   function fetchUsers() {
     const promise = fetch("http://localhost:8000/users");
     return promise;
@@ -62,7 +61,6 @@ function MyApp() {
     return promise;
   }
 
-  // src/MyApp.js (a new block inside MyApp())
   useEffect(() => {
     fetchUsers()
       .then((res) => res.json())
