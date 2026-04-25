@@ -1,3 +1,4 @@
 /node_modules
 /Readings
 .DS_Store
+.env
